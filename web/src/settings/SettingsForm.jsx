@@ -51,7 +51,7 @@ export default props => {
 
   const onChange = useCallback(
     form => setFormState({ ...formState, ...form.formData }),
-    []
+    [formState]
   );
   const onSubmit = useCallback(form => {
     setSaving(true);

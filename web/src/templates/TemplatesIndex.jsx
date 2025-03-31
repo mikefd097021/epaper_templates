@@ -77,7 +77,7 @@ export default props => {
     globalActions.loadSettings({forceReload: true}).then(settings => {
       setActiveTemplate(settings["display.template_name"]);
     });
-  }, [setActiveTemplate, templates, setTemplates]);
+  }, [setActiveTemplate, globalActions, setTemplates]);
 
   useEffect(() => {
     globalActions.loadBitmaps();
@@ -87,7 +87,7 @@ export default props => {
     if (templates == null) {
       triggerReload();
     }
-  }, [triggerReload, templates]);
+  }, [triggerReload]);
 
   useEffect(() => {
     if (templateName && templateName !== "new") {

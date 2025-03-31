@@ -9,7 +9,7 @@ export default {
   "display.windowed_updates": {
     "ui:help":
       "When enabled, update partial regions of the screen.  Only enable this if your display does not support partial updates.",
-    transformer: x => x.toLowerCase() === "true"
+    transformer: x => x !== undefined && x !== null ? x.toLowerCase() === "true" : false
   },
   "power.sleep_mode": {
     "ui:help": (
@@ -29,7 +29,7 @@ export default {
   "power.sleep_override_pin": {
     "ui:help":
       "When this pin is held during boot, deep sleep will be disabled until the next restart.",
-    transformer: parseInt
+    transformer: x => x !== undefined && x !== null ? parseInt(x) : 0
   },
   "power.sleep_override_value": {
     "ui:help": "The value Sleep Override Pin must be held to in order to suspend deep sleep."
@@ -44,16 +44,16 @@ export default {
     "ui:widget": "password"
   },
   "hardware.busy_pin": {
-    transformer: parseInt
+    transformer: x => x !== undefined && x !== null ? parseInt(x) : 0
   },
   "hardware.dc_pin": {
-    transformer: parseInt
+    transformer: x => x !== undefined && x !== null ? parseInt(x) : 0
   },
   "hardware.rst_pin": {
-    transformer: parseInt
+    transformer: x => x !== undefined && x !== null ? parseInt(x) : 0
   },
   "hardware.ss_pin_override": {
-    transformer: parseInt,
+    transformer: x => x !== undefined && x !== null ? parseInt(x) : 0,
     "ui:help": <>
     <div>
       SPI bus to use.  HSPI uses GPIOs 12, 14, 15.  VSPI uses 5, 18, 19.  See README for more details.
@@ -67,7 +67,7 @@ export default {
   "hardware.spi_bus": {
   },
   "web.port": {
-    transformer: parseInt
+    transformer: x => x !== undefined && x !== null ? parseInt(x) : 0
   },
   "mqtt.client_status_topic": {
     "ui:help": "If provided, MQTT birth and LWT messages will be published to this topic."
