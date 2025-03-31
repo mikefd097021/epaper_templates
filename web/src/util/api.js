@@ -2,9 +2,10 @@ import React, { useMemo } from 'react'
 import axios from "axios";
 import { ConcurrencyManager } from "axios-concurrency";
 import useWebSocket from 'react-use-websocket';
+import { API_BASE_URL, WS_URL } from '../config';
 
 const api = axios.create({
-  baseURL: "/api/v1"
+  baseURL: `${API_BASE_URL}/api/v1`
 });
 
 export const useEpaperWebsocket = () => {
@@ -12,16 +13,7 @@ export const useEpaperWebsocket = () => {
     shouldReconnect: (closeEvent) => true
   }), []);
 
-  var loc = window.location, socketUrl;
-  if (loc.protocol === "https:") {
-      socketUrl = "wss:";
-  } else {
-      socketUrl = "ws:";
-  }
-  socketUrl += "//" + loc.host;
-  socketUrl += "/socket";
-
-  return useWebSocket(socketUrl, options);
+  return useWebSocket(`${WS_URL}/socket`, options);
 }
 
 ConcurrencyManager(api, 1);
